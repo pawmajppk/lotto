@@ -3,7 +3,7 @@ version: '3.7'
 
 services:
   app:
-    image: 'testor:latest'
+    image: 'koniecv2:latest'
     build:
       context: .
     container_name: app

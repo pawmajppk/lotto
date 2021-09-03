@@ -1,23 +1,22 @@
-aws s3 ls --endpoint-url http://localhost:4566
 
 
-aws s3 mb s3://lbdbucket --region eu-central-1 --endpoint-url http://localhost:4566
+Glowne
 
-aws s3 ls s3://goods --region eu-central-1 --endpoint-url http://localhost:4566
-
+aws s3 mb s3://lotto.kupon --region eu-central-1 --endpoint-url http://localhost:4566
+aws sqs create-queue --queue-name lotto.bet --endpoint-url http://localhost:4566 --region eu-central-1
 aws lambda create-function --function-name pierwsza  --runtime java11 --handler pl.lbd.Lambda --zip-file fileb://C:/Users/creat/Desktop/lambda-1.0-SNAPSHOT.jar --role arn:aws:iam::12345:role/ignoreme --endpoint-url http://localhost:4566 --region eu-central-1
+aws s3api put-bucket-notification-configuration --bucket lotto.kupon  --endpoint-url http://localhost:4566 --region eu-central-1 --notification-configuration file://C:/Users/creat/Desktop/config.json
+aws s3 cp kkkk.txt s3://lotto.kupon --endpoint-url http://localhost:4566 --region eu-central-1
+
+
+
+Pomocnicze
+
+aws s3 ls s3://lotto.kupon --region eu-central-1 --endpoint-url http://localhost:4566
 
 
 aws lambda update-function-code --function-name pierwsza --zip-file fileb://C:/Users/creat/Desktop/lambda-1.0-SNAPSHOT.jar --endpoint-url http://localhost:4566 --region eu-central-1
 
-
- "arn:aws:lambda:eu-central-1:000000000000:function:pierwsza"
-
-
-
-aws s3api put-bucket-notification-configuration --bucket lbdbucket  --endpoint-url http://localhost:4566 --region eu-central-1 --notification-configuration file://C:/Users/creat/Desktop/config.json
-
-aws s3 cp kkkk.txt s3://lbdbucket/test5 --endpoint-url http://localhost:4566 --region eu-central-1
 
 
 aws logs describe-log-groups --log-group-name-prefix /aws/lambda/pierwsza --endpoint-url http://localhost:4566 --region eu-central-1
@@ -27,11 +26,11 @@ aws logs describe-log-groups --log-group-name-prefix /aws/lambda/pierwsza --endp
 aws logs tail --since 2d /aws/lambda/pierwsza --region eu-central-1 --endpoint-url http://localhost:4566
 
 
-aws sqs create-queue --queue-name kolejka --endpoint-url http://localhost:4566 --region eu-central-1
-
-
-aws sqs receive-message --queue-url http://localhost:4566/000000000000/kolejka --attribute-names All --message-attribute-names All --max-number-of-messages 10 --region eu-central-1 --endpoint-url http://localhost:4566
+aws sqs receive-message --queue-url http://localstack:4566/000000000000/lotto.bet --attribute-names All --message-attribute-names All --max-number-of-messages 10 --region eu-central-1 --endpoint-url http://localhost:4566
 
 
 
 aws --endpoint-url=http://localhost:4566 logs delete-log-group --log-group-name /aws/lambda/pierwsza --region eu-central-1
+
+
+
